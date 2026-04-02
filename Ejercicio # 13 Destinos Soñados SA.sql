@@ -339,3 +339,20 @@ CREATE TABLE Guia_Certificacion (
     CONSTRAINT fk_gc_cert
         FOREIGN KEY (id_certificacion) REFERENCES Certificacion (id_certificacion)
 );
+
+#Algunos Alters para las Relaciones Guia con Algunas tablas en el ejercicio original no es indicado pero varias consultas lo sujieren
+#y estas relaciones son coherentes con el contexto del sistema planteado.
+
+#Modificamos la Tabla Recerva agregando 2 ID (foreing key) 
+ALTER TABLE Reserva
+ADD COLUMN id_paquete INT,
+ADD COLUMN id_guia INT;
+
+#Las relaciones de los id anteriores
+ALTER TABLE Reserva
+ADD CONSTRAINT fk_reserva_paquete
+FOREIGN KEY (id_paquete) REFERENCES Paquete_Turistico(id_paquete);
+
+ALTER TABLE Reserva
+ADD CONSTRAINT fk_reserva_guia
+FOREIGN KEY (id_guia) REFERENCES Guia_Turistico(id_guia);
